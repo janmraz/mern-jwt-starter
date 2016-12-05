@@ -9,9 +9,9 @@ module.exports = {
     },
     production: {
         port: process.env.PORT || 8080,
-        mongo_url: '',//mongolab
+        mongo_url: '',//remote db
         secret: 'secretBitches'
     },
-    spark_api: '',//sparkpost api
+    spark_api: 'cbc7847d474a1becc709179b6bd58422c80c284a',
     app_name: 'RPS Online'
 };

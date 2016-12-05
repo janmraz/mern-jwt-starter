@@ -8,9 +8,6 @@ import Home from '../components/App/Home';
 import About from '../components/App/About';
 import Account from '../components/App/Account';
 import EmailConfirm from '../components/App/EmailConfirm';
-import Lobby_Main from '../components/Lobby/Lobby_Main';
-import Lobby_Home from '../components/Lobby/Lobby_Home';
-import Lobby_Playroom from '../components/Lobby/Lobby_Playroom';
 
 // Routes
 const routes = (

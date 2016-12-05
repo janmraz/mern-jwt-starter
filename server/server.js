@@ -6,7 +6,6 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config')[env];
 const socket = require('./controllers/socket');
 const UserModel = require('./models/User');
-const GameModel = require('./models/Game');
 
 app.use(express.static('public'));
 
