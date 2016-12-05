@@ -1,0 +1,17 @@
+
+/*NAVIGATION*/
+
+.nav-tabs .nav-active {
+    border: 1px solid #ddd;
+    border-bottom: 1px solid #fff;
+    color: #333;
+}
+
+.nav-tabs>li>a:focus {
+    background-color: #fff;
+}
+
+.nav-tabs .nav-active:hover {
+    background-color: #eee;
+    border-bottom: 1px solid #eee;
+}
