@@ -149,6 +149,28 @@ exports.signup = function(req, res, next) {
     });
 };
 
+exports.afterLogin = function (req, res) {
+    let userData = req.body;
+    User.findOne({email: req.body.email},function (err,data) {
+        if(err) console.log(err);
+        if(data == null){
+            let newUser = new User();
+            newUser.picture = userData.picture.data.url;
+            newUser.locale = userData.locale;
+            newUser.email = userData.email;
+            newUser.facebookId = userData.id;
+            newUser.name = userData.name;
+            newUser.save(function (err) {
+                if(err) console.log(err);
+                console.log('saved user');
+                res.json({message: 'saved user'})
+            });
+        }else{
+            console.log('signed in');
+            res.json({message: 'signed in'})
+        }
+    });
+};
 exports.signin = function(req, res, next) {
     // User has already had their email and password auth'd we just need to give them a token
     const USER_TOKEN = tokenForUser({ id: req.user._id });

@@ -4,7 +4,7 @@
 module.exports = {
     development: {
         port: process.env.PORT || 8080,
-        mongo_url: 'mongodb://127.0.0.1/whatever',
+        mongo_url: 'mongodb://127.0.0.1/hotelsocial',
         secret: 'secretBitches'
     },
     production: {

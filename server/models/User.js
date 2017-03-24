@@ -8,7 +8,6 @@ module.exports.init = function () {
         password: String,
         emailConfirmed: false,
         emailConfirmCode: String,
-        money: { type: Number, default: 50 }
     });
 
     var User = mongoose.model('User', userSchema);

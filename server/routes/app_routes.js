@@ -11,11 +11,11 @@ const checkAuth = passport.authenticate('jwt', { session: false, failureRedirect
 
 // ROUTES -----------------------------------------------------
 
-router.get('/', checkAuth, function(req, res) {
+router.get('/',  function(req, res) {
     res.sendFile(process.cwd() + '/public/html/app.html');
 });
 
-router.get('/*', checkAuth, function(req, res) {
+router.get('/*',  function(req, res) {
     res.sendFile(process.cwd() + '/public/html/app.html');
 });
 

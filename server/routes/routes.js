@@ -24,27 +24,25 @@ module.exports = function (app) {
     // allow requests from cross origin
     // app.use(cors(corsOptions));
 
-    // ---------- VIEWS -------------
-
-    // INDEX ROUTES
-    app.get('/', function(req, res) {
-        res.sendFile(process.cwd() + '/public/html/index.html');
-    });
-
+    // ---------- VIEWS ------------
     // REACT ROUTES
     // app
     const appRoutes = require('./app_routes');
     app.use('/app', appRoutes);
-    app.use('/lobby', appRoutes);
-    // login
-    const loginRoutes = require('./login_routes');
-    app.use('/login', loginRoutes);
+    app.get('/',function (req,res) {
+        res.sendFile(process.cwd() + '/public/html/app.html');
+    });
+    app.get('/login',function (req,res) {
+        res.sendFile(process.cwd() + '/public/html/app.html');
+    });
 
     // ---------- API -------------
 
     // USER ROUTES
     const userRoutes = require('./user_routes');
     app.use('/api/user', userRoutes);
+
+
 
     // PROTECTED ROUTES
     // protected route

@@ -21,7 +21,7 @@ router.post('/signup', jsonParser, Authentication.signup);
 
 // SIGN IN    
 // take user data and check user exists in DB
-router.post('/signin', jsonParser, requireSignIn, Authentication.signin);
+router.post('/signin', jsonParser,  Authentication.afterLogin);
 
 // SIGN OUT
 // delete cookie and user object on req and redirect user

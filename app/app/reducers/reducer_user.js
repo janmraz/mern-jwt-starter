@@ -1,13 +1,17 @@
-import {FETCH_USER, EMAIL_CODE, EMAIL_CONFIRM} from '../actions/types.js';
+import {USER_LOGGED_OUT, USER_LOGGED_IN} from '../actions/types.js';
+let ls = require('local-storage');
+import { browserHistory } from 'react-router';
 
-const INITIAL_STATE = {};
 
-export default function(state = INITIAL_STATE, action) {
-    if (action.type === FETCH_USER) {
-        return action.payload;
+export default function(state = {}, { type, payload }) {
+    if (type === USER_LOGGED_IN) {
+        ls('token',payload.accessToken);
+        return payload
     }
-    if (action.type === EMAIL_CONFIRM) {
-        return { ...state, emailConfirmed: true };
+    if (type === USER_LOGGED_OUT) {
+        ls('token',null);
+        return {}
     }
     return state;
 }
+
