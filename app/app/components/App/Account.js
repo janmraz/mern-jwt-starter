@@ -1,28 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchUserInfo } from '../../actions/actions_user';
+const ls = require('local-storage');
 
 // components
 import Alert from '../shared/Alert.js';
 import LogOut from './LogOut.js';
-import Loading from '../shared/Loading.js';
-
-// Load actions
-import { requestEmailCode } from '../../actions/actions_user';
 
 class Account extends React.Component {
-    
-
-    
+    componentDidMount(){
+        let id = ls('user.id');
+        this.props.dispatch(fetchUserInfo(id));
+    }
     render() {
-        if (!this.props.user.email) {
-            // if no user info yet, return loading
-            return <Loading message="Loading your account information" />;
-        }
         return (
             <div className="container text-center">
                 <Alert />
                 <p>You are logged in as...</p>
-                <h1>{this.props.user.email}</h1>
+                <h1>{this.props.user.name}</h1>
                 <LogOut />
             </div>
         );

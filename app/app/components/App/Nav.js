@@ -19,7 +19,12 @@ class Nav extends React.Component {
                     </div>
                     
                     <div className="collapse navbar-collapse" id="menu-collapse">
-                    
+                        <ul className="nav navbar-nav">
+                            <li>
+                                <Link to="/app/profile" activeClassName="active">Profile</Link>
+                            </li>
+                        </ul>
+
                         <ul className="nav navbar-nav">
                             <li>
                                 <Link to="/app/about" activeClassName="active">About</Link>
@@ -35,7 +40,7 @@ class Nav extends React.Component {
                                 <Link to="/app/about" activeClassName="active">About</Link>
                             </li>
                         </ul>
-                        
+
                         <ul className="nav navbar-nav navbar-right">
                             <li>
                                 <Link to="/app/account" activeClassName="active">Account</Link>

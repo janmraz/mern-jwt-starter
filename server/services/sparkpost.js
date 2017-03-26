@@ -100,7 +100,7 @@ exports.lockedOutEmail = function (email, callback) {
       transmissionBody: {
         content: {
           from: APP_EMAIL,
-          subject: APP_NAME + ': Account Locked Out',
+          subject: APP_NAME + ': Profile Locked Out',
           html:'<html><body><p>Someone (hopefully you) has had 10 failed password attempts on the ' + APP_NAME + ' account for ' + email + '.</p>\
           <p>For your security, we have locked your account for 60 minutes.</p>\
           <p>You will not be able to reset your password or log in for 1 hour.</p>\

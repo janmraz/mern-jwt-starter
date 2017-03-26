@@ -46,9 +46,10 @@ router.post('/password/reset', jsonParser, Authentication.resetpw);
 router.post('/password/change', jsonParser, requireAuth, Authentication.changepw);
 
 // USER INFO
-router.get('/info', requireAuth, function(req, res) {
-    res.json({ email: req.user.email, emailConfirmed: req.user.emailConfirmed, money: req.user.money,user_id: req.user._id });
-});
+router.get('/info', Authentication.getInfo);
+
+// CHANGE LOCATION
+router.post('/location',jsonParser, Authentication.changeLocation);
 
 
 module.exports = router;

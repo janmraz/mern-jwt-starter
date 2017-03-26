@@ -8,6 +8,7 @@ import Main from '../components/App/Main';
 import Home from '../components/App/Home';
 import About from '../components/App/About';
 import Account from '../components/App/Account';
+import Profile from '../components/App/Profile';
 import Auth from '../components/App/Auth';
 
 // Routes
@@ -18,6 +19,7 @@ const routes = (
             <Route path='/app/chats' header='About' component={About} />
             <Route path='/app/people' header='About' component={About} />
             <Route path='/app/search' header='About' component={About} />
+            <Route path='/app/profile' header='Profile' component={Profile} />
             <Route path='/app/account' header='User Account' component={Account} />
         </Route>
     </Router>
@@ -25,8 +27,7 @@ const routes = (
 
 const unauthorizedRoutes = (
     <Router history={browserHistory}>
-        <Route path='/login' component={Auth} />
-        <Route path='/' component={Auth} />
+        <Route path='/*' component={Auth} />
     </Router>
 );
 

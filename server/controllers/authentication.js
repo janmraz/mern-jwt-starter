@@ -2,6 +2,7 @@
 
 const jwt = require('jwt-simple');
 const bcrypt = require('bcrypt-nodejs');
+const moment = require('moment');
 
 const secret = 'secret';
 
@@ -160,6 +161,15 @@ exports.afterLogin = function (req, res) {
             newUser.email = userData.email;
             newUser.facebookId = userData.id;
             newUser.name = userData.name;
+            newUser.birthday =  userData.birthday ? moment(userData.birthday, "MM/DD/YYYY").toDate().getTime() : 0;
+            newUser.cover = userData.cover.source;
+            newUser.currency = userData.currency.user_currency;
+            newUser.first_name = userData.first_name;
+            newUser.last_name = userData.last_name;
+            newUser.education = userData.education.length > 0 ? userData.education[0].school.name : '';
+            newUser.work = userData.work.length > 0 ? userData.work[0].employer.name : '';
+            newUser.locale = userData.locale;
+            newUser.gender = userData.gender;
             newUser.save(function (err) {
                 if(err) console.log(err);
                 console.log('saved user');
@@ -169,6 +179,27 @@ exports.afterLogin = function (req, res) {
             console.log('signed in');
             res.json({message: 'signed in'})
         }
+    });
+};
+exports.changeLocation = function (req, res) {
+  let id = req.body.id;
+  let location = req.body.location;
+  User.findOne({facebookId: id},function (err, user) {
+      if(err) throw err;
+      user.location = location;
+      user.save(function (err) {
+          if(err) throw err;
+          console.log('changed location to',location);
+          res.json(location);
+      })
+  })
+};
+
+exports.getInfo = function (req, res) {
+    let userid = req.query.id;
+    User.findOne({facebookId: userid},function (err, user) {
+        if(err) throw err;
+        res.json({data: user});
     });
 };
 exports.signin = function(req, res, next) {

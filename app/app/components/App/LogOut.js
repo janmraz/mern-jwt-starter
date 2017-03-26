@@ -10,18 +10,18 @@ import Loading from '../shared/Loading.js';
 class LogOut extends React.Component {
     constructor() {
         super();
+        this.handleLogOut = this.handleLogOut.bind(this);
         this.state = {
             loading: false
         };
     }
     
-    _handleLogOut(e) {
+    handleLogOut(e) {
         e.preventDefault();
         this.setState({ loading: true });
-        this.props.dispatch(logOutUser())
-            .then((response) => {
-                location.reload();
-            });
+        this.props.dispatch(logOutUser());
+        location.reload();
+
     }
     
     render() {
@@ -31,7 +31,7 @@ class LogOut extends React.Component {
         return (
             <div className="well">
                 <h3>Done what you came for?</h3>
-                <button className="btn btn-danger btn-lg" onClick={this._handleLogOut.bind(this)}><i className="fa fa-sign-out"></i> Log Out</button>
+                <button className="btn btn-danger btn-lg" onClick={this.handleLogOut}><i className="fa fa-sign-out"></i> Log Out</button>
             </div>
         );
     }

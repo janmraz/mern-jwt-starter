@@ -10,7 +10,6 @@ class Auth extends React.Component {
     }
 
     responseFacebook(response){
-        console.log(response);
         this.props.dispatch(logInUser(response)).then(function () {
             location.reload();
         });
@@ -24,8 +23,8 @@ class Auth extends React.Component {
                 <FacebookLogin
                     appId="1851001551787668"
                     autoLoad={true}
-                    scope="public_profile, email, user_birthday"
-                    fields="name,email,picture"
+                    scope="public_profile,email,user_about_me,user_birthday,user_education_history,user_hometown,user_location,user_photos,user_work_history"
+                    fields="name,email,picture,age_range,first_name,last_name,gender,cover,link,locale,timezone,hometown,education,about,birthday,location,work,context,currency,languages,relationship_status"
                     callback={_this.responseFacebook} />
             </div>
         );
