@@ -32,7 +32,7 @@ class Nav extends React.Component {
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/about" activeClassName="active">About</Link>
+                                <Link to="/app/people" activeClassName="active">People</Link>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav">

@@ -51,5 +51,8 @@ router.get('/info', Authentication.getInfo);
 // CHANGE LOCATION
 router.post('/location',jsonParser, Authentication.changeLocation);
 
+// CHANGE LOCATION
+router.get('/hotel',jsonParser, Authentication.getHotelPeers);
+
 
 module.exports = router;

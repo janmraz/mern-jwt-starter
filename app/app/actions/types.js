@@ -15,3 +15,7 @@ export const REMOVE_ALERT = 'REMOVE_ALERT';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const SEND_MESSAGES = 'SEND_MESSAGES';
 export const CHAT_YET = 'CHAT_YET';
+
+// PEOPLE
+export const GET_PEOPLE_BY_HOTEL = 'GET_PEOPLE_BY_HOTEL';
+export const GET_PEOPLE_BY_CITY = 'GET_PEOPLE_BY_CITY';
