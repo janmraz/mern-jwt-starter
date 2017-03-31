@@ -5,6 +5,7 @@
   "main": "server/server.js",
   "scripts": {
     "start": "webpack && node server/server.js",
+    "dev": "node server/server.js",
     "webpack": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

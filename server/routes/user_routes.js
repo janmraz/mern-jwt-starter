@@ -4,55 +4,20 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 // controllers
-const Authentication = require('../controllers/authentication');
-// services
-const passport = require('passport');
-require('../services/passport.js'); // this needs to be run but is not directly referenced in this file
+const MainController = require('../controllers/mainController');
 
-// session false as we are not using cookies, using tokens
-const requireSignIn = passport.authenticate('local', { session: false });
-const requireAuth = passport.authenticate('jwt', { session: false });
 
-// ROUTES -----------------------------------------------------
+router.get('/info', MainController.getInfo);
 
-// SIGN UP
-// take user data and create user in DB
-router.post('/signup', jsonParser, Authentication.signup);
+router.post('/location',jsonParser, MainController.changeLocation);
 
-// SIGN IN    
-// take user data and check user exists in DB
-router.post('/signin', jsonParser,  Authentication.afterLogin);
+router.post('/search',jsonParser, MainController.changeSearch);
 
-// SIGN OUT
-// delete cookie and user object on req and redirect user
-router.post('/signout', jsonParser, requireAuth, Authentication.signout);
+router.get('/hotel',jsonParser, MainController.getHotelPeers);
 
-// VERIFY EMAIL
-// request an email with an email confirm code to signed in user
-router.get('/emailcode', requireAuth, Authentication.emailCode);
-// require user to be signed in to verify email address
-router.get('/verify/:emailCode', Authentication.emailConfirm);
-    
-// FORGOT PASSWORD
-// check user email exists in DB and set resetToken
-router.post('/forgotten', jsonParser, Authentication.forgotpw);
-// check a reset link is valid
-router.get('/reset/:resetCode', Authentication.resetCheck);
-// take password data and set new password
-router.post('/password/reset', jsonParser, Authentication.resetpw);
+router.get('/messages',jsonParser, MainController.getMessages);
 
-// CHANGE PASSWORD
-// take the old password and new password and update the password
-router.post('/password/change', jsonParser, requireAuth, Authentication.changepw);
-
-// USER INFO
-router.get('/info', Authentication.getInfo);
-
-// CHANGE LOCATION
-router.post('/location',jsonParser, Authentication.changeLocation);
-
-// CHANGE LOCATION
-router.get('/hotel',jsonParser, Authentication.getHotelPeers);
+router.get('/peers',jsonParser, MainController.getChatPeers);
 
 
 module.exports = router;

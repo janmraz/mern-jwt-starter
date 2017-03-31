@@ -25,7 +25,7 @@ class Profile extends React.Component {
         console.log(!_this.props.people || !!_this.props.people.length);
         if(!_this.props.people || !!_this.props.people.length){
             list = <div className="list-group"> {_this.props.people.map(function(person, i){
-                return <a href={'/app/user/'+person.facebookId}className="list-group-item" key={i}>{person.name}</a>;
+                return <a href={'/app/user/'+person.facebookId} className="list-group-item" key={i}>{person.name}</a>;
             })} </div>;
         }else{
             list = <h2>No person in your location</h2>

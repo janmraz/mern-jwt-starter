@@ -18,7 +18,7 @@ class Profile extends React.Component {
     render() {
         return (
                 <div className="container well text-center">
-                    <h4>Change Location</h4>
+                    <h4>{this.props.header}</h4>
                     <h2><input value={this.state.location} onChange={this.handleChange}/></h2>
                     <button className="btn btn-success" onClick={() => this.props.changeLocation(this.state.location)}>Change Location</button>
                 </div>

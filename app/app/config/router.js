@@ -12,18 +12,23 @@ import Profile from '../components/App/Profile';
 import People from '../components/App/People';
 import Auth from '../components/App/Auth';
 import Detail from '../components/App/Detail';
+import Chat from '../components/Chat/Chat';
+import Chats from '../components/App/Chats';
+import State from '../components/App/State';
 
 // Routes
 const routes = (
     <Router history={browserHistory}>
         <Route path='/' component={Main}>
             <IndexRoute component={Home} />
-            <Route path='/app/chats' header='About' component={About} />
-            <Route path='/app/people' header='People' component={People} />
-            <Route path='/app/search' header='About' component={About} />
-            <Route path='/app/profile' header='Profile' component={Profile} />
-            <Route path='/app/account' header='User Account' component={Account} />
-            <Route path='/app/user/:id' header='User Account' component={Detail} />
+            <Route path='about' header='About' component={About} />
+            <Route path='people' header='People' component={People} />
+            <Route path='state' header='State' component={State} />
+            <Route path='profile' header='Profile' component={Profile} />
+            <Route path='account' header='Account' component={Account} />
+            <Route path='chats' header='Chats' component={Chats} />
+            <Route path='/app/user/:id' header='Detail' component={Detail} />
+            <Route path='/app/chat/:id' header='Chat' component={Chat} />
         </Route>
     </Router>
 );

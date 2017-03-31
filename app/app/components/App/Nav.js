@@ -15,35 +15,35 @@ class Nav extends React.Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                       </button>
-                      <IndexLink to="/app" className="navbar-brand" activeClassName="active">Whatever</IndexLink>
+                      <IndexLink to="/" className="navbar-brand" activeClassName="active">Whatever</IndexLink>
                     </div>
                     
                     <div className="collapse navbar-collapse" id="menu-collapse">
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/profile" activeClassName="active">Profile</Link>
+                                <Link to="/profile" activeClassName="active">Profile</Link>
                             </li>
                         </ul>
 
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/about" activeClassName="active">About</Link>
+                                <Link to="/state" activeClassName="active">State</Link>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/people" activeClassName="active">People</Link>
+                                <Link to="/people" activeClassName="active">People</Link>
                             </li>
                         </ul>
                         <ul className="nav navbar-nav">
                             <li>
-                                <Link to="/app/about" activeClassName="active">About</Link>
+                                <Link to="/chats" activeClassName="active">Chats</Link>
                             </li>
                         </ul>
 
                         <ul className="nav navbar-nav navbar-right">
                             <li>
-                                <Link to="/app/account" activeClassName="active">Account</Link>
+                                <Link to="/account" activeClassName="active">Account</Link>
                             </li>
                         </ul>
                     

@@ -34,7 +34,7 @@ class Profile extends React.Component {
         let id = ls('user.id');
         this.props.dispatch(changeLocation(id,location)).then(() => {
             browserHistory.push('/');
-            browserHistory.push('/app/profile');
+            browserHistory.push('/profile');
         })
     }
     flick(){
@@ -45,7 +45,7 @@ class Profile extends React.Component {
         let chl;
         if(this.state.change){
             console.log('state location');
-            chl = <ChangeLocation changeLocation={this.changeLocation}/>;
+            chl = <ChangeLocation changeLocation={this.changeLocation} header="Change location"/>;
         }
         let years = '';
         if(this.props.user.birthday){

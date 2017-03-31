@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // action types
-import { USER_LOGGED_IN, USER_LOGGED_OUT, FETCH_USER,GET_USER, CHANGE_LOCATION } from './types';
+import { USER_LOGGED_IN, USER_LOGGED_OUT, FETCH_USER,GET_USER, CHANGE_LOCATION,CHANGE_SEARCH } from './types';
 
 // ----- THUNK ACTION CREATORS ------
 
@@ -68,6 +68,21 @@ export function changeLocation(id,location) {
             .then((response) => {
                 dispatch({
                     type: CHANGE_LOCATION,
+                    payload: response.data
+                });
+            })
+            .catch(() => {
+                throw new Error("User not found");
+            });
+    };
+}
+// Change Search
+export function changeSearch(id,search) {
+    return function(dispatch) {
+        return axios.post('/api/user/search', {id,search})
+            .then((response) => {
+                dispatch({
+                    type: CHANGE_SEARCH,
                     payload: response.data
                 });
             })

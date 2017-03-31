@@ -14,40 +14,15 @@ module.exports = function (app) {
     // use cookierParser
     app.use(cookieParser());
 
-    // services
-    const passport = require('passport');
-    require('../services/passport.js'); // this needs to be run but is not directly referenced in this file
-
-    // session false as we are not using cookies, using tokens
-    const requireAuth = passport.authenticate('jwt', { session: false });
-
     // allow requests from cross origin
     // app.use(cors(corsOptions));
-
-    // ---------- VIEWS ------------
-    // REACT ROUTES
-    // app
-    const appRoutes = require('./app_routes');
-    app.use('/app', appRoutes);
-    app.get('/',function (req,res) {
-        res.sendFile(process.cwd() + '/public/html/app.html');
-    });
-    app.get('/login',function (req,res) {
-        res.sendFile(process.cwd() + '/public/html/app.html');
-    });
-
     // ---------- API -------------
 
     // USER ROUTES
     const userRoutes = require('./user_routes');
     app.use('/api/user', userRoutes);
 
-
-
-    // PROTECTED ROUTES
-    // protected route
-    app.route('/protected')
-        .get(requireAuth, function(req, res) {
-            res.send({ message: 'Authenticated' });
-        });
+    app.get('/*',function (req,res) {
+        res.sendFile(process.cwd() + '/public/html/app.html');
+    });
 };

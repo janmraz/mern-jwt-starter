@@ -33,11 +33,12 @@ class Profile extends React.Component {
         if(this.props.user){
             let array = moment(this.props.user.birthday).fromNow().split(' ');
             years = <h4>{array[0] + ' ' + array[1] + ' old'}</h4>;
+            let url = '/app/chat/' + this.props.user.facebookId;
             return (
                 <div>
                     <div className="container text-center">
                         <Alert />
-                        <p>Profile</p>
+                        <p>User</p>
                         <h1>{this.props.user.name}</h1>
                         <img src={this.props.user.picture} />
                         <h4>{this.props.user.email}</h4>
@@ -45,7 +46,11 @@ class Profile extends React.Component {
                         <h4>{this.props.user.work}</h4>
                         <h4>{this.props.user.location}</h4>
                         {years}
+                        <hr/>
+                        <br/>
+                        <button className="btn"><a href={url}>Open Chat</a></button>
                     </div>
+
                 </div>
             );
         }else{
@@ -58,7 +63,6 @@ class Profile extends React.Component {
                 </div>
             );
         }
-
     }
 }
 

@@ -18,6 +18,7 @@ module.exports.init = function () {
         work: String,
         education: String,
         location: String,
+        search: String,
     });
     var User = mongoose.model('User', userSchema);
 };

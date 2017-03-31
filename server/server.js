@@ -6,6 +6,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config')[env];
 const socket = require('./controllers/socket');
 const UserModel = require('./models/User');
+const MessageModel = require('./models/Message');
 
 app.use(express.static('public'));
 
@@ -32,6 +33,7 @@ db.on('error', function(err){
 });
 //models
 UserModel.init();
+MessageModel.init();
 
 // export db connection so can be required in other files
 exports.db = db;
