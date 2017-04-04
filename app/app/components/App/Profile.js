@@ -38,7 +38,6 @@ class Profile extends React.Component {
         })
     }
     flick(){
-        console.log('flick',this.state.change);
         this.setState({change: !this.state.change});
     }
     render() {

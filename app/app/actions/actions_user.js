@@ -62,9 +62,10 @@ export function detailUserInfo(id) {
     };
 }
 // Change Location
-export function changeLocation(id,location) {
+export function changeLocation(id,location,startDate,endDate) {
     return function(dispatch) {
-        return axios.post('/api/user/location', {id,location})
+        console.log('date',startDate,endDate);
+        return axios.post('/api/user/location', {id,location,startDate,endDate})
             .then((response) => {
                 dispatch({
                     type: CHANGE_LOCATION,
@@ -77,9 +78,9 @@ export function changeLocation(id,location) {
     };
 }
 // Change Search
-export function changeSearch(id,search) {
+export function changeSearch(id,search,startDate,endDate) {
     return function(dispatch) {
-        return axios.post('/api/user/search', {id,search})
+        return axios.post('/api/user/search', {id,search,startDate,endDate})
             .then((response) => {
                 dispatch({
                     type: CHANGE_SEARCH,

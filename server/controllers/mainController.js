@@ -41,9 +41,16 @@ exports.afterLogin = function (req, res) {
 exports.changeLocation = function (req, res) {
   let id = req.body.id;
   let location = req.body.location;
+  let startDate = req.body.startDate;
+  let endDate = req.body.endDate;
   User.findOne({facebookId: id},function (err, user) {
       if(err) throw err;
       user.location = location;
+      user.startDate = startDate;
+      user.endDate = endDate;
+      user.search = location;
+      user.startDateSearch = startDate;
+      user.endDateSearch = endDate;
       user.save(function (err) {
           if(err) throw err;
           console.log('changed location to',location);
@@ -54,9 +61,13 @@ exports.changeLocation = function (req, res) {
 exports.changeSearch = function (req, res) {
   let id = req.body.id;
   let search = req.body.search;
+  let startDate = req.body.startDate;
+  let endDate = req.body.endDate;
   User.findOne({facebookId: id},function (err, user) {
       if(err) throw err;
       user.search = search;
+      user.startDateSearch = startDate;
+      user.endDateSearch = endDate;
       user.save(function (err) {
           if(err) throw err;
           console.log('changed search to',search);
@@ -100,7 +111,12 @@ exports.getInfo = function (req, res) {
 exports.getHotelPeers = function (req, res) {
     let userid = req.query.id;
     User.findOne({facebookId: userid},function (err, currUser) {
-        User.find({location: currUser.location},function (err, users) {
+        User
+            .find({location: currUser.location})
+            .or([
+                {$and: [{startDate: {$lte: currUser.startDateSearch}}, {endDate: {$gte: currUser.startDateSearch}}]}, {$and: [{startDate: {$lte: currUser.endDateSearch}}, {endDate: {$gte: currUser.endDateSearch}}]}
+            ])
+            .exec(function (err, users) {
             if(err) throw err;
             console.log('hotel peers',users);
             res.json(users.filter(user => user.facebookId != userid));

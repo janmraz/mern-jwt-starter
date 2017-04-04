@@ -19,6 +19,10 @@ module.exports.init = function () {
         education: String,
         location: String,
         search: String,
+        startDate: Number,
+        endDate: Number,
+        startDateSearch: Number,
+        endDateSearch: Number,
     });
     var User = mongoose.model('User', userSchema);
 };
