@@ -2,7 +2,6 @@ var webpack = require('webpack');
 
 module.exports = {
     entry: {
-        login: './app/login/app.js',
         app: './app/app/app.js',
         common: [
             'script!jquery/dist/jquery.min.js',
