@@ -13,5 +13,6 @@ import routes from './config/router';
 //     // dispatch action to fetch user data
 //     store.dispatch(fetchUserInfo());
 // }
+console.log('init1');
 
 ReactDOM.render(<Provider store={store}>{routes}</Provider>, document.getElementById('app'));

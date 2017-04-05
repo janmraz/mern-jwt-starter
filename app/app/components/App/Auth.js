@@ -7,6 +7,7 @@ class Auth extends React.Component {
     constructor(){
         super();
         this.responseFacebook = this.responseFacebook.bind(this);
+        console.log('init');
     }
 
     responseFacebook(response){
