@@ -19,4 +19,3 @@ export const GET_PEERS = 'CHAT_PEERS';
 
 // PEOPLE
 export const GET_PEOPLE_BY_HOTEL = 'GET_PEOPLE_BY_HOTEL';
-export const GET_PEOPLE_BY_CITY = 'GET_PEOPLE_BY_CITY';
