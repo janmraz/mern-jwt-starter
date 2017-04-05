@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // action types
-import { USER_LOGGED_IN, USER_LOGGED_OUT, FETCH_USER,GET_USER, CHANGE_LOCATION,CHANGE_SEARCH } from './types';
+import { USER_LOGGED_IN, USER_LOGGED_OUT, FETCH_USER,GET_USER, CHANGE_LOCATION,CHANGE_SEARCH,EDIT_USER,DELETE_USER } from './types';
 
 // ----- THUNK ACTION CREATORS ------
 
@@ -11,6 +11,20 @@ export function logOutUser() {
         return dispatch({
                     type: USER_LOGGED_OUT
                 });
+    };
+}
+// Log out user and remove user info from state
+export function deleteUser(id) {
+    return function(dispatch) {
+        return axios.post('/api/user/delete', {id})
+            .then((response) => {
+                dispatch({
+                    type: DELETE_USER
+                });
+            })
+            .catch((err) => {
+                console.error("ERR",err);
+            });
     };
 }
 
@@ -25,7 +39,22 @@ export function logInUser(data) {
                 });
             })
             .catch((err) => {
-                throw new Error("User not found",err);
+                console.error("ERR",err);
+            });
+    };
+}
+// Log out user and remove user info from state
+export function editUser(data,id) {
+    return function(dispatch) {
+        return axios.post('/api/user/edit', {data, id})
+            .then((response) => {
+                dispatch({
+                    type: EDIT_USER,
+                    payload: response.data
+                });
+            })
+            .catch((err) => {
+                console.error("ERR",err);
             });
     };
 }
@@ -42,7 +71,7 @@ export function fetchUserInfo(id) {
                 });
             })
             .catch(() => {
-                throw new Error("User not found");
+                console.error("ERR",err);
             });
     };
 }
@@ -57,7 +86,7 @@ export function detailUserInfo(id) {
                 });
             })
             .catch(() => {
-                throw new Error("User not found");
+                console.error("ERR",err);
             });
     };
 }
@@ -73,7 +102,7 @@ export function changeLocation(id,location,startDate,endDate) {
                 });
             })
             .catch(() => {
-                throw new Error("User not found");
+                console.error("ERR",err);
             });
     };
 }

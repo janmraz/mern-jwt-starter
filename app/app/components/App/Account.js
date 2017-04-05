@@ -6,6 +6,7 @@ const ls = require('local-storage');
 // components
 import Alert from '../shared/Alert.js';
 import LogOut from './LogOut.js';
+import Delete from './Delete.js';
 
 class Account extends React.Component {
     componentDidMount(){
@@ -19,6 +20,7 @@ class Account extends React.Component {
                 <p>You are logged in as...</p>
                 <h1>{this.props.user.name}</h1>
                 <LogOut />
+                <Delete />
             </div>
         );
     }

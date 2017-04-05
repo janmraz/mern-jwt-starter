@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { detailUserInfo, changeLocation } from '../../actions/actions_user';
-import ChangeLocation from './ChangeLocation';
+import ChangeLocation from './ChangeAction';
 import { browserHistory } from 'react-router';
 const ls = require('local-storage');
 const moment = require('moment');

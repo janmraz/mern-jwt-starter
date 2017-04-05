@@ -3,10 +3,10 @@ export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const GET_USER = 'GET_USER';
 export const FETCH_USER = 'FETCH_USER';
-export const FETCH_USERS = 'FETCH_USERS';
-export const SEARCH = 'SEARCH';
 export const CHANGE_LOCATION = 'CHANGE_LOCATION';
 export const CHANGE_SEARCH = 'CHANGE_SEARCH';
+export const EDIT_USER = 'EDIT_USER';
+export const DELETE_USER = 'DELETE_USER';
 
 // ALERT
 export const NEW_ALERT = 'NEW_ALERT';

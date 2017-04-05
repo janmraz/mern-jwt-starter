@@ -15,8 +15,7 @@ export function getMessages(id,userid) {
                 });
             })
             .catch((err) => {
-                console.log(err);
-                throw new Error("Messages not found");
+                console.error("ERR",err);
             });
     };
 }
@@ -30,8 +29,7 @@ export function getChatPeers(id) {
                 });
             })
             .catch((err) => {
-                console.log(err);
-                throw new Error("Messages not found");
+                console.error("ERR",err);
             });
     };
 }

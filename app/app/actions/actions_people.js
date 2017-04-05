@@ -17,8 +17,7 @@ export function getPeopleInMyHotel(id,location) {
                 });
             })
             .catch((err) => {
-                console.log(err);
-                throw new Error("User not found");
+                console.error("ERR",err);
             });
     };
 }

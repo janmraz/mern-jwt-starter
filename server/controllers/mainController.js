@@ -9,8 +9,9 @@ const Message = mongoose.model('Message');
 
 exports.afterLogin = function (req, res) {
     let userData = req.body;
-    User.findOne({email: req.body.email},function (err,data) {
+    User.findOne({facebookId: req.body.id},function (err,data) {
         if(err) console.log(err);
+        console.log(data);
         if(data == null){
             let newUser = new User();
             newUser.picture = userData.picture ? userData.picture.data.url : 'https://scontent-vie1-1.xx.fbcdn.net/v/t1.0-1/c14.0.48.48/p48x48/10354686_10150004552801856_220367501106153455_n.jpg?oh=c2a164bf8dc9d7e131ee9cbb2ea47e8a&oe=595CE659';
@@ -93,17 +94,38 @@ exports.getMessages = function (req, res) {
                 ]
             }]
     };
-    Message.find(query,function (err, data) {
+    Message
+        .find(query)
+        .sort({'time': 1})
+        .limit(100)
+        .exec(function (err, data) {
         if(err) throw err;
         res.json(data);
     })
+};
+
+exports.editUser = function (req, res) {
+  let userid = req.body.id;
+  let data = req.body.data;
+  console.log('data',data);
+  User.findOne({facebookId: userid},function (err, user) {
+      if(err) throw err;
+      user.name = data.name;
+      user.email = data.email;
+      user.work = data.work;
+      user.education = data.education;
+      user.save(function (err,user) {
+          if(err) throw err;
+          console.log('edited User',user);
+          res.json(user);
+      })
+  })
 };
 
 exports.getInfo = function (req, res) {
     let userid = req.query.id;
     User.findOne({facebookId: userid},function (err, user) {
         if(err) throw err;
-        console.log('get user info',user.name);
         res.json({data: user});
     });
 };
@@ -111,16 +133,18 @@ exports.getInfo = function (req, res) {
 exports.getHotelPeers = function (req, res) {
     let userid = req.query.id;
     User.findOne({facebookId: userid},function (err, currUser) {
+        if(!currUser.startDateSearch) return res.json([]);
+        if(!currUser.endDateSearch) return res.json([]);
         User
             .find({location: currUser.location})
             .or([
                 {$and: [{startDate: {$lte: currUser.startDateSearch}}, {endDate: {$gte: currUser.startDateSearch}}]}, {$and: [{startDate: {$lte: currUser.endDateSearch}}, {endDate: {$gte: currUser.endDateSearch}}]}
             ])
             .exec(function (err, users) {
-            if(err) throw err;
-            console.log('hotel peers',users);
-            res.json(users.filter(user => user.facebookId != userid));
-        })
+                if(err) throw err;
+                console.log('hotel peers',users);
+                res.json(users.filter(user => user.facebookId !== userid));
+            })
     });
 };
 
@@ -151,6 +175,22 @@ exports.getChatPeers  = function (req, res) {
             res.json([])
         }
     });
+};
+exports.deleteUser = function (req, res) {
+    let userid = req.body.id;
+    User.remove({facebookId: userid},function (err) {
+            if (err) throw err;
+            console.log('deleted user');
+            Message.remove({user: userid},function (err) {
+                    if (err) throw err;
+                    console.log('deleted user messages which he sent');
+                    Message.remove({recipient: userid},function (err) {
+                            if (err) throw err;
+                            console.log('deleted user messages which he received');
+                            res.json();
+                        });
+                })
+        });
 };
 
 

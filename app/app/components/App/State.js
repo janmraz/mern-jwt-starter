@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUserInfo, changeLocation,changeSearch } from '../../actions/actions_user';
-import ChangeLocation from './ChangeLocation';
+import ChangeAction from './ChangeAction';
 import { browserHistory } from 'react-router';
 const ls = require('local-storage');
 const moment = require('moment');
@@ -48,19 +48,25 @@ class State extends React.Component {
         }
     }
     render() {
-        let changeLocation = this.state.location ? <ChangeLocation changeLocation={this.changeLocation} location={this.props.user.location} startDate={this.props.user.startDate} endDate={this.props.user.endDate}  header="Change location"/> :'';
-        let changeSearch = this.state.search ? <ChangeLocation changeLocation={this.changeSearch} location={this.props.user.search} startDate={this.props.user.startDateSearch} endDate={this.props.user.endDateSearch} header="Change search query"/> : '';
+        let location = this.props.user.location ? this.props.user.location : '-';
+        let search = this.props.user.search ? this.props.user.search : '-';
+        let startDate = this.props.user.startDate ? this.props.user.startDate : moment().unix();
+        let endDate = this.props.user.endDate ? this.props.user.endDate : moment().unix();
+        let startDateSearch = this.props.user.startDateSearch ? this.props.user.startDateSearch : moment().unix();
+        let endDateSearch = this.props.user.endDateSearch ? this.props.user.endDateSearch : moment().unix();
+        let changeLocation = this.state.location ? <ChangeAction changeLocation={this.changeLocation} location={location} startDate={startDate} endDate={endDate} header="Change location"/> :'';
+        let changeSearch = this.state.search ? <ChangeAction changeLocation={this.changeSearch} location={search} startDate={startDateSearch} endDate={endDateSearch} header="Change search query"/> : '';
         return (
             <div>
                 <div className="container text-center">
                     <Alert />
                     <p>State</p>
                     <h3>My location</h3>
-                    <h4>Your location: {this.props.user.location}</h4>
-                    <h4>From {moment.unix(this.props.user.startDate).format("MM/DD/YYYY")} to {moment.unix(this.props.user.endDate).format("MM/DD/YYYY")}</h4>
+                    <h4>Your location: {location}</h4>
+                    <h4>From {moment.unix(startDate).format("MM/DD/YYYY")} to {moment.unix(endDate).format("MM/DD/YYYY")}</h4>
                     <h3>I search for...</h3>
-                    <h4>Location you search: {this.props.user.search}</h4>
-                    <h4>From {moment.unix(this.props.user.startDateSearch).format("MM/DD/YYYY")} to {moment.unix(this.props.user.endDateSearch).format("MM/DD/YYYY")}</h4>
+                    <h4>Location you search: {search}</h4>
+                    <h4>From {moment.unix(startDateSearch).format("MM/DD/YYYY")} to {moment.unix(endDateSearch).format("MM/DD/YYYY")}</h4>
                     <button className="btn btn-primary" onClick={() => {this.flick('location')}}>Change Location</button>
                     &nbsp;
                     <button className="btn btn-default" onClick={() => {this.flick('search')}}>Change Search</button>

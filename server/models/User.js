@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 
 module.exports.init = function () {
     var userSchema = new mongoose.Schema({
-        email:     { type: String, unique: true },
-        name:     String,
+        email: String,
+        name: String,
         created: { type: Date, default: Date.now },
         updated: { type: Date, default: Date.now },
         facebookId: { type: String, unique: true },

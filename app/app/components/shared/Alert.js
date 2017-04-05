@@ -12,13 +12,6 @@ class Alert extends React.Component {
     
     render() {
         if (this.props.alerts.type) {
-            // set the header for the alert
-            let alertHeader = "Oooops!";
-            if (this.props.alerts.type === "email") {
-                alertHeader = "Check your email.";
-            } else if (this.props.alerts.type === "success") {
-                alertHeader = "Success!";
-            }
             // the colour of the alert
             let alertClass = "danger";
             if (this.props.alerts.type === "email") {
@@ -29,7 +22,7 @@ class Alert extends React.Component {
             return (
                 <div className={"alert alert-dismissible alert-" + alertClass }>
                   <button type="button" className="close" data-dismiss="alert" onClick={this._removeAlert.bind(this)}>&times;</button>
-                  <strong>{alertHeader}</strong> {this.props.alerts.message}
+                  <strong> {this.props.alerts.message}</strong>
                 </div>
             );
         } else {

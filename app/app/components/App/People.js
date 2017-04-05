@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getPeopleInMyHotel } from '../../actions/actions_people';
 import { fetchUserInfo } from '../../actions/actions_user';
-import ChangeLocation from './ChangeLocation';
+import ChangeLocation from './ChangeAction';
 const ls = require('local-storage');
 const moment = require('moment');
 
@@ -34,7 +34,6 @@ class Profile extends React.Component {
             <div>
                 <div className="container text-center">
                     <Alert />
-                    <h3>People in your location</h3>
                     {list}
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchUserInfo, changeLocation } from '../../actions/actions_user';
-import ChangeLocation from './ChangeLocation';
+import { fetchUserInfo, changeLocation,editUser } from '../../actions/actions_user';
+import EditUser from './EditUser';
 import { browserHistory } from 'react-router';
 const ls = require('local-storage');
 const moment = require('moment');
@@ -15,6 +15,7 @@ class Profile extends React.Component {
         super();
         this.changeLocation = this.changeLocation.bind(this);
         this.flick = this.flick.bind(this);
+        this.update = this.update.bind(this);
         this.state = {
             email: '',
             id: '',
@@ -37,14 +38,19 @@ class Profile extends React.Component {
             browserHistory.push('/profile');
         })
     }
+    update(name,email,work,education){
+        this.props.dispatch(editUser({name,email,work,education},ls('user.id'))).then(()=> {
+            browserHistory.push('/');
+            browserHistory.push('/profile');
+        })
+    }
     flick(){
         this.setState({change: !this.state.change});
     }
     render() {
         let chl;
         if(this.state.change){
-            console.log('state location');
-            chl = <ChangeLocation changeLocation={this.changeLocation} header="Change location"/>;
+            chl = <EditUser email={this.props.user.email} name={this.props.user.name} work={this.props.user.work} education={this.props.user.education} update={this.update} header="Edit User"/>;
         }
         let years = '';
         if(this.props.user.birthday){
@@ -63,7 +69,7 @@ class Profile extends React.Component {
                 <h4>{this.props.user.work}</h4>
                 <h4>{this.props.user.location}</h4>
                 {years}
-                <button className="btn" onClick={this.flick}>Change Location</button>
+                <button className="btn" onClick={this.flick}>Edit User</button>
             </div>
             <br/>
             <br/>

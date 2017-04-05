@@ -8,10 +8,15 @@ const socket = require('./controllers/socket');
 const UserModel = require('./models/User');
 const MessageModel = require('./models/Message');
 
+const bodyParser = require('body-parser');
+const jsonParser = bodyParser.json();
+
 app.use(express.static('public'));
 
 // use morgan for logging errors
 app.use(morgan('tiny'));
+
+app.use(jsonParser);
 
 // set the port
 app.set('port', (config.port));

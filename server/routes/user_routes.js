@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const bodyParser = require('body-parser');
-const jsonParser = bodyParser.json();
+
 
 // controllers
 const MainController = require('../controllers/mainController');
@@ -9,15 +8,21 @@ const MainController = require('../controllers/mainController');
 
 router.get('/info', MainController.getInfo);
 
-router.post('/location',jsonParser, MainController.changeLocation);
+router.post('/signin', MainController.afterLogin);
 
-router.post('/search',jsonParser, MainController.changeSearch);
+router.post('/location', MainController.changeLocation);
 
-router.get('/hotel',jsonParser, MainController.getHotelPeers);
+router.post('/search', MainController.changeSearch);
 
-router.get('/messages',jsonParser, MainController.getMessages);
+router.post('/edit', MainController.editUser);
 
-router.get('/peers',jsonParser, MainController.getChatPeers);
+router.get('/hotel', MainController.getHotelPeers);
+
+router.get('/messages', MainController.getMessages);
+
+router.get('/peers', MainController.getChatPeers);
+
+router.post('/delete', MainController.deleteUser);
 
 
 module.exports = router;
